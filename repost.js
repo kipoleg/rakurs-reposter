@@ -19,7 +19,8 @@ const FIRST_RUN = 20; // posts copied when the target channel is empty
   if (!src) throw new Error(`Не нашёл канал «${SOURCE}» среди подписок`);
   const target = await client.getEntity(TARGET);
 
-  const [last] = await client.getMessages(target, { limit: 1 });
+  // the newest real post of the target (service entries like «Канал создан» do not count)
+  const last = (await client.getMessages(target, { limit: 10 })).find((m) => (m.message || '').trim());
   const since = last ? last.date : 0;
   const msgs = (await client.getMessages(src.entity, { limit: 60 }))
     .filter((m) => (m.message || '').trim() && m.date > since)
