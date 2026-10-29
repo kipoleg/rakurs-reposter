@@ -1,0 +1,7 @@
+{
+  "name": "rakurs-reposter",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Copies new posts of a private Telegram channel into the user's own public channel",
+  "dependencies": { "qrcode": "^1.5.4", "telegram": "^2.26.22" }
+}
